@@ -38,4 +38,16 @@ This enables repeatable audit generation and supports compliance review processe
 - Microsoft Graph PowerShell SDK 
 - PowerShell scripting 
 --- 
+## Screenshots
+### Microsoft Graph Connection
+![Graph Connection](screenshots/graph-connection.png)
+
+---
+### Filtered PIM Audit Output
+![Filtered Audit Output](screenshots/filtered-audit-output.png)
+
+---
+### CSV Export Confirmation
+![CSV Export](screenshots/csv-export-success.png)
+
 ## Author Nicholas Cichon
