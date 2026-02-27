@@ -25,9 +25,10 @@ The included PowerShell script:
 - Filters privileged role activity 
 - Selects relevant event properties 
 - Exports a timestamped CSV audit report
---- ## Example Output
+--- 
+## Example Output
 The script exports reports in the following format:
-Privileged_Audit_Report_YYYY-MM-DD_HH-MM-SS.csv 
+'Privileged_Audit_Report_YYYY-MM-DD_HH-MM-SS.csv' 
 This enables repeatable audit generation and supports compliance review processes. 
 --- 
 ## Technologies Used 
