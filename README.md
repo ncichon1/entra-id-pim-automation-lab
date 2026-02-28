@@ -159,7 +159,7 @@ Users automatically assigned to the Employees security group:
 
 Batch execution generates structured logs for operational review and auditing.
 
-
+![Batch Log Output](screenshots/log-output.png)
 
 ---
 
