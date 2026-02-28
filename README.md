@@ -104,11 +104,16 @@ This models real-world IAM onboarding workflows.
 
 The onboarding engine consumes a structured HR-style CSV file:
 
-```csv
-DisplayName,UserPrincipalName,Department,GroupName
-John Carter,john.carter@tenant.onmicrosoft.com,IT,Employees
-Emily Stone,emily.stone@tenant.onmicrosoft.com,Finance,Employees
-```
+![CSV Intake Model](screenshots/csv-intake-model.png)
+
+Columns:
+
+- DisplayName  
+- UserPrincipalName  
+- Department  
+- GroupName  
+
+This simulates an enterprise HR provisioning feed.
 
 ---
 
