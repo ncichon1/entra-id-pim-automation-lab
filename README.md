@@ -131,11 +131,11 @@ The script performs:
 
 ---
 
-## Idempotent Re-Run Behavior
+## User Already Exists Re-Run Behavior
 
 If executed again, existing users are safely skipped to prevent duplication.
 
-![Idempotent Execution](screenshots/idempotent-run.png)
+![Idempotent Execution](screenshots/already-exists-run.png)
 
 ---
 
