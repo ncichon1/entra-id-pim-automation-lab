@@ -114,9 +114,7 @@ Emily Stone,emily.stone@tenant.onmicrosoft.com,Finance,Employees
 
 ## Batch Onboarding Execution
 
-```powershell
-.\scripts\onboarding.ps1 -CsvPath .\data\new-hires.csv
-```
+![Batch Onboarding Execution](screenshots/batch-onboarding-success.png)
 
 The script performs:
 
