@@ -197,7 +197,7 @@ The offboarding engine consumes a structured termination CSV file.
 Example structure:
 
 UserPrincipalName
-john.carter@tenant.onmicrosoft.com
+john.doe@tenant.onmicrosoft.com
 
 ---
 
