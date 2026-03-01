@@ -8,6 +8,8 @@ Phase 1 focuses on least-privilege architecture using Privileged Identity Manage
 
 Phase 2 extends the lab into bulk identity lifecycle automation using a CSV-driven HR intake model to simulate enterprise onboarding workflows.
 
+Phase 3 completes the lifecycle by implementing bulk offboarding automation to simulate secure enterprise termination processes.
+
 ---
 
 # Phase 1 – Privileged Access Governance & Audit Automation
@@ -85,9 +87,7 @@ It implements a CSV-driven HR intake model to provision users in bulk with:
 - Group-based RBAC
 - Idempotent execution (safe reprocessing)
 - Structured batch logging
-
-This models real-world IAM onboarding workflows.
-
+  
 ---
 
 ## Bulk Onboarding Architecture
@@ -160,6 +160,59 @@ Users automatically assigned to the Employees security group:
 Batch execution generates structured logs for operational review and auditing.
 
 ![Batch Log Output](screenshots/log-output.png)
+
+---
+
+# Phase 3 – Identity Lifecycle Automation (Bulk Offboarding)
+
+## Overview
+
+This phase simulates enterprise-grade identity termination processing using Microsoft Graph PowerShell and a structured CSV intake model.
+
+It implements controlled deprovisioning workflows including:
+
+- Account disablement  
+- Active session revocation  
+- Security group removal  
+- Structured batch logging  
+- Fault-tolerant execution (continues processing on errors)  
+
+---
+
+## Bulk Offboarding Architecture
+
+- CSV-based termination feed ingestion  
+- Microsoft Graph account disablement  
+- Active session revocation  
+- Group membership removal  
+- Structured operational logging  
+- Graceful error handling  
+
+--
+
+## Termination CSV Model
+
+The offboarding engine consumes a structured termination CSV file.
+
+Example structure:
+
+UserPrincipalName
+john.carter@tenant.onmicrosoft.com
+
+---
+
+## Batch Offboarding Execution
+
+![Bulk Offboarding Execution](screenshots/bulk-offboarding-success.png)
+
+The script performs:
+
+1. Microsoft Graph authentication  
+2. User lookup validation  
+3. Account disablement  
+4. Active sign-in session revocation  
+5. Security group membership removal  
+6. Structured batch logging  
 
 ---
 
