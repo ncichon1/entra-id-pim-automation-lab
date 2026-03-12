@@ -216,6 +216,278 @@ The script performs:
 
 ---
 
+Readme · MD
+Copy
+
+# Microsoft Entra ID Automation & Lifecycle Lab
+
+## Overview
+
+This project demonstrates both privileged access governance and identity lifecycle automation in Microsoft Entra ID using Microsoft Graph PowerShell.
+
+Phase 1 focuses on least-privilege architecture using Privileged Identity Management (PIM) and Conditional Access to monitor privileged activity.
+
+Phase 2 extends the lab into bulk identity lifecycle automation using a CSV-driven HR intake model to simulate enterprise onboarding workflows.
+
+Phase 3 completes the lifecycle by implementing bulk offboarding automation to simulate secure enterprise termination processes.
+
+Phase 4 extends the lab with MFA enforcement via Conditional Access policy and SAML SSO integration with a test enterprise application.
+
+---
+
+# Phase 1 – Privileged Access Governance & Audit Automation
+
+## Architecture Implemented
+
+- Break-glass Global Administrator account (excluded from Conditional Access)
+- Role-assignable privileged security group
+- Eligible Global Administrator role via PIM (Just-In-Time activation)
+- Conditional Access enforcement during privileged elevation
+- Delegated Microsoft Graph authentication
+- Privileged activity monitoring and automated CSV reporting
+
+---
+
+## Privileged Access Workflow
+
+1. User added as **Eligible** to a role-assignable group
+2. User activates Global Administrator via PIM (time-bound access)
+3. Conditional Access enforces security controls
+4. Activity logged in Entra directory audit logs
+5. PowerShell automation retrieves and exports privileged events
+
+---
+
+## Audit Automation
+
+The PowerShell script:
+
+- Connects to Microsoft Graph using delegated permissions
+- Retrieves directory audit logs
+- Filters privileged role activity
+- Selects relevant event properties
+- Exports a timestamped CSV audit report
+
+---
+
+## Example Output
+
+The script exports reports in the format:
+
+`Privileged_Audit_Report_YYYY-MM-DD_HH-MM-SS.csv`
+
+This enables repeatable audit generation and compliance review support.
+
+---
+
+## Screenshots – Privileged Access Automation
+
+### Microsoft Graph Connection
+![Graph Connection](screenshots/graph-connection.png)
+
+---
+
+### Filtered PIM Audit Output
+![Filtered PIM Audit Output](screenshots/filtered-audit-output.png)
+
+---
+
+### CSV Export Confirmation
+![CSV Export Confirmation](screenshots/csv-export-success.png)
+
+---
+
+# Phase 2 – Identity Lifecycle Automation (Bulk Onboarding)
+
+## Overview
+
+This phase simulates enterprise-grade identity lifecycle automation using Microsoft Graph PowerShell.
+
+It implements a CSV-driven HR intake model to provision users in bulk with:
+
+- Automated account creation
+- Department assignment
+- Group-based RBAC
+- Idempotent execution (safe reprocessing)
+- Structured batch logging
+
+---
+
+## Bulk Onboarding Architecture
+
+- CSV-based HR feed ingestion
+- Microsoft Graph user provisioning
+- Conditional existence checks (idempotency)
+- Automatic group assignment
+- Timestamped operational logging
+
+---
+
+## CSV Intake Model
+
+The onboarding engine consumes a structured HR-style CSV file:
+
+![CSV Intake Model](screenshots/csv-intake-model.png)
+
+Columns:
+
+- DisplayName
+- UserPrincipalName
+- Department
+- GroupName
+
+This simulates an enterprise HR provisioning feed.
+
+---
+
+## Batch Onboarding Execution
+
+![Batch Onboarding Execution](screenshots/batch-onboarding-success.png)
+
+The script performs:
+
+1. Microsoft Graph authentication
+2. User existence validation
+3. Conditional creation logic
+4. Group membership assignment
+5. Structured batch logging
+
+---
+
+## User Already Exists Re-Run Behavior
+
+If executed again, existing users are safely skipped to prevent duplication.
+
+![Idempotent Execution](screenshots/already-exists-run.png)
+
+---
+
+## Entra ID Validation
+
+Bulk provisioned users visible in Entra Admin Center:
+
+![Entra Users](screenshots/entra-users.png)
+
+---
+
+## Group Assignment Validation
+
+Users automatically assigned to the Employees security group:
+
+![Group Membership](screenshots/group-members.png)
+
+---
+
+## Logging Output
+
+Batch execution generates structured logs for operational review and auditing.
+
+![Batch Log Output](screenshots/log-output.png)
+
+---
+
+# Phase 3 – Identity Lifecycle Automation (Bulk Offboarding)
+
+## Overview
+
+This phase simulates enterprise-grade identity termination processing using Microsoft Graph PowerShell and a structured CSV intake model.
+
+It implements controlled deprovisioning workflows including:
+
+- Account disablement
+- Active session revocation
+- Security group removal
+- Structured batch logging
+- Fault-tolerant execution (continues processing on errors)
+
+---
+
+## Bulk Offboarding Architecture
+
+- CSV-based termination feed ingestion
+- Microsoft Graph account disablement
+- Active session revocation
+- Group membership removal
+- Structured operational logging
+- Graceful error handling
+
+---
+
+## Termination CSV Model
+
+The offboarding engine consumes a structured termination CSV file.
+
+Example structure:
+
+UserPrincipalName
+john.doe@tenant.onmicrosoft.com
+
+---
+
+## Batch Offboarding Execution
+
+![Bulk Offboarding Execution](screenshots/bulk-offboarding-success.png)
+
+The script performs:
+
+1. Microsoft Graph authentication
+2. User lookup validation
+3. Account disablement
+4. Active sign-in session revocation
+5. Security group membership removal
+6. Structured batch logging
+
+---
+
+# Phase 4 – MFA Enforcement & SAML SSO Integration
+
+## Overview
+
+This phase extends the lab with enterprise-grade authentication controls, implementing MFA enforcement via Conditional Access policy and SAML 2.0 SSO integration with a test enterprise application.
+
+It demonstrates:
+
+- MFA enforcement scoped to all users via Conditional Access
+- Break-glass account exclusion from MFA policy
+- Report-only mode validation before enforcement
+- SAML enterprise application registration via Microsoft Graph PowerShell
+- Group-based application assignment using existing onboarded users
+
+---
+
+## MFA Conditional Access Architecture
+
+- All users targeted with MFA requirement
+- Break-glass Global Administrator excluded to prevent lockout
+- Policy deployed in Report-only mode first for safe validation before enforcement
+- Policy switched to On via Entra Admin Center after Report-only validation
+- Scoped to all cloud resources
+  
+---
+
+## MFA Enforcement Workflow
+
+1. Security Defaults confirmed disabled (prerequisite for custom CA policies)
+2. Break-glass account Object ID retrieved and excluded from policy scope
+3. Conditional Access policy created in Report-only mode via PowerShell
+4. Policy validated in CA Insights workbook
+5. Policy enforced via update script
+6. Test user MFA prompt confirmed on sign-in
+
+---
+
+## Screenshots – MFA Conditional Access Policy
+
+### Policy Configuration – Report-Only Mode
+![MFA CA Policy Report-Only](screenshots/mfa-ca-policy-report-only.png)
+
+---
+
+### Grant Controls – Require Multifactor Authentication
+![MFA CA Grant Controls](screenshots/mfa-ca-grant-controls.png)
+
+---
+
 # Technologies Used
 
 - Microsoft Entra ID
