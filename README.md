@@ -488,6 +488,64 @@ It demonstrates:
 
 ---
 
+
+---
+
+
+## SAML SSO Integration
+
+### Architecture
+
+- Enterprise application registered via Entra Admin Center
+- SAML-based single sign-on configured with Salesforce as the service provider
+- Admin user assigned to the application in Entra
+- Federation Metadata XML and Base64 certificate exported for Salesforce configuration
+- Salesforce My Domain Authentication Configuration updated to enable Entra ID SSO
+
+### SAML SSO Workflow
+
+1. Enterprise app registered in Entra Admin Center
+2. Entity ID and ACS URL configured in Basic SAML Configuration
+3. Signing certificate generated and Federation Metadata XML downloaded
+4. Salesforce SSO settings configured with Entra as Identity Provider
+5. Entra ID SSO enabled in Salesforce My Domain Authentication Configuration
+6. Admin user assigned to Salesforce SAML Lab enterprise application
+7. SSO login tested and validated — successful Salesforce landing confirmed
+
+---
+
+## Screenshots – SAML SSO Integration
+
+### Entra – Basic SAML Configuration
+![SAML Basic Config](screenshots/saml-basic-config.png)
+
+---
+
+### Entra – SAML Signing Certificate
+![SAML Signing Certificate](screenshots/saml-signing-certificate.png)
+
+---
+
+### Salesforce – SSO Settings (Entra ID as IdP)
+![Salesforce SSO Settings](screenshots/saml-salesforce-sso-settings.png)
+
+---
+
+### Salesforce – My Domain Authentication Configuration
+![Salesforce Auth Config](screenshots/saml-salesforce-auth-config.png)
+
+---
+
+### Entra – User Assigned to Salesforce SAML Lab
+![User Assignment](screenshots/saml-user-assignment.png)
+
+---
+
+### Successful SSO Login – Salesforce Landing Page
+![SSO Success](screenshots/saml-sso-success.png)
+
+---
+
 # Technologies Used
 
 - Microsoft Entra ID
@@ -496,8 +554,10 @@ It demonstrates:
 - Microsoft Graph PowerShell SDK
 - CSV-based HR intake modeling
 - Bulk identity provisioning
-- Idempotent automation logic
+- Duplicate run automation logic
 - Structured lifecycle logging
+- SAML 2.0 SSO
+- Enterprise application registration
 
 ---
 
